@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: login-page-backend
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: login-page-backend
+  template:
+    metadata:
+      labels:
+        app: login-page-backend
+    spec:
+      containers:
+        - name: login-page-backend
+          image: mateouni/my-backend-app:v5
+          ports:
+            - containerPort: 4000

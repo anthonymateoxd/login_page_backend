@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: login-page-backend-service
+spec:
+  selector:
+    app: login-page-backend
+  ports:
+    - port: 4000 # Service port
+      targetPort: 4000 # Must match your backend container port
+      nodePort: 30081
+  type: NodePort

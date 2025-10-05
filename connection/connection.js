@@ -1,9 +1,10 @@
 import mysql from 'mysql2/promise';
 
 const dbSettings = {
-  host: 'mysql',
-  user: 'root',
-  password: 'guest',
+  // host: 'mysql',
+  host: 'mysql-service',
+  user: 'guest', // Cambiar de 'root' a 'guest'
+  password: 'guest', // Password correcto
   database: 'ion_users',
   port: 3306,
   waitForConnections: true,

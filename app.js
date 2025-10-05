@@ -6,9 +6,20 @@ import cors from 'cors';
 
 const app = express();
 
+// app.use(
+//   cors({
+//     origin: ['http://localhost:8100', 'http://localhost:8081'],
+//     credentials: true,
+//   })
+// );
 app.use(
   cors({
-    origin: ['http://localhost:8100', 'http://localhost:8081'],
+    origin: [
+      'http://localhost:8100',
+      'http://localhost:8081',
+      'http://login-page-frontend-service',
+      'http://login-page-frontend-service:80',
+    ],
     credentials: true,
   })
 );
