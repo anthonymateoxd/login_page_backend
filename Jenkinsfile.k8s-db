@@ -1,10 +1,15 @@
 pipeline {
     agent any
 
-    environment {
-        KUBECONFIG = 'C:\\ProgramData\\Jenkins\\.kube\\config'
+    tools {
+        // Configure kubectl in Jenkins Global Tool Configuration
+        kubectl 'kubectl' 
     }
 
+    environment {
+        // Use environment-agnostic kubeconfig handling
+        KUBECONFIG = credentials('kubeconfig')
+    }
 
     stages {
         stage('Aplicar Configuración Backend') {
@@ -12,11 +17,11 @@ pipeline {
                 script {
                     echo '🚀 Iniciando despliegue del Backend en Kubernetes...'
 
-                    bat 'echo 🧱 Aplicando Deployment...'
-                    bat 'kubectl apply -f backend.yaml --validate=false'
+                    echo '🧱 Aplicando Deployment...'
+                    kubectl('apply -f backend.yaml --validate=false')
 
-                    bat 'echo 🌐 Aplicando Service...'
-                    bat 'kubectl apply -f backend-service.yaml --validate=false'
+                    echo '🌐 Aplicando Service...'
+                    kubectl('apply -f backend-service.yaml --validate=false')
                 }
             }
         }
@@ -25,7 +30,7 @@ pipeline {
             steps {
                 script {
                     echo '🔍 Verificando pods en ejecución...'
-                    bat 'kubectl get pods -n default'
+                    kubectl('get pods -n default')
                 }
             }
         }
@@ -38,5 +43,14 @@ pipeline {
         failure {
             echo '❌ Error durante el despliegue del Backend.'
         }
+    }
+}
+
+// Custom function to handle kubectl commands
+def kubectl(String args) {
+    if (isUnix()) {
+        sh "kubectl ${args}"
+    } else {
+        bat "kubectl ${args}"
     }
 }
