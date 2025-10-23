@@ -22,7 +22,7 @@ pipeline {
                 echo 'Subiendo imagen...'
                 script {
                     withCredentials([usernamePassword(
-                        credentialsId: 'dockerhub-credentials', 
+                        credentialsId: 'Docker-Hub-Credentials', 
                         usernameVariable: 'DOCKERHUB_CRED_USER', 
                         passwordVariable: 'DOCKERHUB_CRED_PASS'
                     )]) {
