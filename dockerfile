@@ -18,7 +18,6 @@ COPY app.js ./
 COPY config.js ./
 COPY dockerfile ./
 COPY index.js ./
-COPY package-lock.json ./
 COPY package.json ./
 # COPY .env.template ./
 # COPY .env ./
