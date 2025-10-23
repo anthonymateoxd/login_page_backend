@@ -8,12 +8,6 @@ pipeline {
     }
 
     stages {
-        stage('Checkout') {
-            steps {
-                echo 'Obteniendo el código...'
-                checkout scm
-            }
-        }
 
         stage('Build Docker image') {
             steps {
