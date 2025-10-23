@@ -28,7 +28,6 @@ COPY package.json ./
 # Copiar todos los directorios relevantes
 COPY connection ./connection
 COPY controller ./controller
-COPY init.sql ./init.sql
 COPY libs ./libs
 COPY routes ./routes
 
