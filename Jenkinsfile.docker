@@ -17,24 +17,22 @@ pipeline {
             }
         }
 
-    stage('Push to DockerHub') {
+   stage('Push to DockerHub') {
         steps {
             echo 'Subiendo imagen...'
             script {
                 withCredentials([usernamePassword(
-                    credentialsId: 'Docker-Hub-Credentials', 
-                    usernameVariable: 'DOCKERHUB_CRED_USER', 
-                    passwordVariable: 'DOCKERHUB_CRED_PASS'
+                    credentialsId: 'Docker-Hub-Credentials-Domain', 
+                    usernameVariable: 'DOCKERHUB_USER', 
+                    passwordVariable: 'DOCKERHUB_PASS'
                 )]) {
-                    bat """
-                        echo %DOCKERHUB_CRED_PASS% | docker login -u %DOCKERHUB_CRED_USER% --password-stdin
-                    """
-                    bat "docker push %DOCKERHUB_CRED_USER%/${IMAGE_NAME}:${IMAGE_TAG}"
+                    bat "docker login -u %DOCKERHUB_USER% -p %DOCKERHUB_PASS%"
+                    bat "docker push %DOCKERHUB_USER%/my-backend-app:latest"
                 }
             }
         }
     }
-            }
+                }
 
     post {
         success {
