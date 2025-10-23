@@ -20,7 +20,7 @@ pipeline {
         stage('Push to DockerHub') {
             steps {
                 echo 'Subiendo imagen...'
-                bat "echo psuh ${DOCKERHUB_USER}/${IMAGE_NAME}:${IMAGE_TAG}"
+                bat "push ${DOCKERHUB_USER}/${IMAGE_NAME}:${IMAGE_TAG}"
             }
         }
     }
