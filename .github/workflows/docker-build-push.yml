@@ -22,7 +22,7 @@ jobs:
         uses: docker/login-action@v3
         with:
           username: ${{ env.DOCKERHUB_USER }}
-          password: ${{ secrets.DOCKER_HUB_CREDENTIALS_DOMAIN_TO_GIT_HUB }}
+          password: ${{ secrets.DOCKER_HUB_CREDENTIALS_DOMAIN_TO_GIT_HUB_BACKEND }}
 
       - name: Build image
         run: |
